@@ -18,8 +18,8 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngMaterial'])
 
 .service('homeService', HomeService)
 
-.controller('homeController', ['$scope', '$routeParams', '$http', 'homeService', HomeController])
-.controller('aboutController', ['$scope', AboutController])
+.controller('homeController', ['$scope', 'homeService', HomeController])
+.controller('aboutController', ['$scope', '$routeParams', AboutController])
 
 .directive('test', testDirective)
 

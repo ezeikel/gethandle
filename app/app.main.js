@@ -19,8 +19,8 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngMaterial'])
 
 .service('homeService', HomeService)
 
-.controller('homeController', ['$scope', '$routeParams', '$http', 'homeService', HomeController])
-.controller('aboutController', ['$scope', AboutController])
+.controller('homeController', ['$scope', 'homeService', HomeController])
+.controller('aboutController', ['$scope', '$routeParams', AboutController])
 
 .directive('test', testDirective)
 
@@ -33,28 +33,29 @@ module.exports = function($routeProvider) {
       templateUrl: 'app/components/home/homeView.html',
       controller: 'homeController'
     })
-    .when('/:num', {
-      templateUrl: 'app/components/home/homeView.html',
-      controller: 'homeController'
-    })
     .when('/about', {
+      templateUrl: 'app/components/about/aboutView.html',
+      controller: 'aboutController'
+    })
+    .when('/about/:num', {
       templateUrl: 'app/components/about/aboutView.html',
       controller: 'aboutController'
     })
 };
 
 },{}],3:[function(require,module,exports){
-module.exports = function($scope) {
+module.exports = function($scope, $routeParams) {
   $scope.message = 'Ezeikel';
+  $scope.num = $routeParams.num || 1;
 
 };
 
 },{}],4:[function(require,module,exports){
-module.exports = function($scope, $routeParams, $http, homeService) {
+module.exports = function($scope, homeService) {
   $scope.message = 'Big bad wolf';
   $scope.name = 'Carlos the Generals';
-  $scope.num = $routeParams.num || 1;
-  
+
+
   homeService.helloWorld();
 
   $scope.helloWorld = homeService.helloWorld;
