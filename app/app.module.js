@@ -18,7 +18,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngMaterial'])
 
 .service('homeService', HomeService)
 
-.controller('homeController', ['$scope', '$http', '$routeParams', 'homeService', HomeController])
+.controller('homeController', ['$scope', '$routeParams', '$http', 'homeService', HomeController])
 .controller('aboutController', ['$scope', AboutController])
 
 .directive('test', testDirective)

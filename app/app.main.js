@@ -19,7 +19,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngMaterial'])
 
 .service('homeService', HomeService)
 
-.controller('homeController', ['$scope', '$http', '$routeParams', 'homeService', HomeController])
+.controller('homeController', ['$scope', '$routeParams', '$http', 'homeService', HomeController])
 .controller('aboutController', ['$scope', AboutController])
 
 .directive('test', testDirective)
@@ -30,6 +30,10 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngMaterial'])
 module.exports = function($routeProvider) {
   $routeProvider
     .when('/', {
+      templateUrl: 'app/components/home/homeView.html',
+      controller: 'homeController'
+    })
+    .when('/:num', {
       templateUrl: 'app/components/home/homeView.html',
       controller: 'homeController'
     })
@@ -50,24 +54,10 @@ module.exports = function($scope, $routeParams, $http, homeService) {
   $scope.message = 'Big bad wolf';
   $scope.name = 'Carlos the Generals';
   $scope.num = $routeParams.num || 1;
-  $scope.newer = 'testing 123';
-
+  
   homeService.helloWorld();
 
   $scope.helloWorld = homeService.helloWorld;
-
-  // BUTTONS ======================
-
-  // define some random object and button values
-  $scope.bigData = {};
-
-  $scope.bigData.breakfast = false;
-  $scope.bigData.lunch = true;
-  $scope.bigData.dinner = false;
-
-  // COLLAPSE =====================
-  $scope.isCollapsed = false;
-
 };
 
 },{}],5:[function(require,module,exports){
