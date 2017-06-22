@@ -17,10 +17,10 @@ var testDirective = require('./directives/test/testDirective');
 
 angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngMaterial'])
 
-.service('HomeService', HomeService)
+.service('homeService', HomeService)
 
-.controller('homeController', ['$scope', '$http', 'homeService', HomeController])
-.controller('aboutController', ['$scope', aboutController])
+.controller('homeController', ['$scope', '$http', '$routeParams', 'homeService', HomeController])
+.controller('aboutController', ['$scope', AboutController])
 
 .directive('test', testDirective)
 
@@ -46,13 +46,15 @@ module.exports = function($scope) {
 };
 
 },{}],4:[function(require,module,exports){
-module.exports = function($scope, $http, homeService) {
+module.exports = function($scope, $routeParams, $http, homeService) {
   $scope.message = 'Big bad wolf';
   $scope.name = 'Carlos the Generals';
   $scope.num = $routeParams.num || 1;
   $scope.newer = 'testing 123';
 
-  $scope.helloWorld = plannerService.helloWorld;
+  homeService.helloWorld();
+
+  $scope.helloWorld = homeService.helloWorld;
 
   // BUTTONS ======================
 
@@ -71,7 +73,7 @@ module.exports = function($scope, $http, homeService) {
 },{}],5:[function(require,module,exports){
 module.exports = function() {
   this.helloWorld = function() {
-    console.log('This is the plannerService method');
+    console.log('This is the homeService method');
   };
 };
 

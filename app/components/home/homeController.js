@@ -1,10 +1,12 @@
-module.exports = function($scope, $http, homeService) {
+module.exports = function($scope, $routeParams, $http, homeService) {
   $scope.message = 'Big bad wolf';
   $scope.name = 'Carlos the Generals';
   $scope.num = $routeParams.num || 1;
   $scope.newer = 'testing 123';
 
-  $scope.helloWorld = plannerService.helloWorld;
+  homeService.helloWorld();
+
+  $scope.helloWorld = homeService.helloWorld;
 
   // BUTTONS ======================
 
